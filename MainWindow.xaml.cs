@@ -39,10 +39,22 @@ namespace BrickStore
                     string colorName = element.Element("ColorName").Value;
                     string categoryName = element.Element("CategoryName").Value;
                     int qty = Convert.ToInt32(element.Element("Qty").Value);
-                    LegoElem newLego = new(id, name, colorName, categoryName, qty);
+                    LegoElem newLego = new(id, name, categoryName, colorName, qty);
                     LegoElements.Add(newLego);
                     lbCount.Content = $"Count: {LegoElements.Count()}";
                 }
+                cbKategoriaSzuro.Items.Add("All");
+                foreach (var elem in LegoElements.Select(x => x.Category).Distinct())
+                {
+                    cbKategoriaSzuro.Items.Add(elem);
+                }
+                cbSzinSzuro.Items.Add("All");
+                foreach (var elem in LegoElements.Select(x => x.Color).Distinct())
+                {
+                    cbSzinSzuro.Items.Add(elem);
+                }
+                cbSzinSzuro.SelectedIndex = 0;
+                cbKategoriaSzuro.SelectedIndex = 0;
             }
             else
             {
@@ -60,11 +72,24 @@ namespace BrickStore
             Beolvasas(fileDialog.FileName);
         }
 
-        private void tbSzuro_TextChanged(object sender, TextChangedEventArgs e)
+        public void Szures()
         {
-            var szurt = LegoElements.Where(x => x.Name.ToLower().StartsWith(tbSzuro.Text.ToLower()) || x.Id.ToLower().StartsWith(tbSzuro.Text.ToLower()));
+            string szin = cbSzinSzuro.SelectedItem.ToString() == "All" ? cbSzinSzuro.SelectedItem.ToString() : "";
+            var szurt = LegoElements.Where(x => (x.Name.ToLower().StartsWith(tbSzuro.Text.ToLower()) || x.Id.ToLower().StartsWith(tbSzuro.Text.ToLower()))
+            && x.Category == (cbKategoriaSzuro.SelectedItem.ToString())
+            && x.Color == );
             dgLegoElements.ItemsSource = szurt;
             lbCount.Content = $"Count: {szurt.Count()}";
+        }
+
+        private void btnKeres_Click(object sender, RoutedEventArgs e)
+        {
+            Szures();
+        }
+
+        private void btnTorol_Click(object sender, RoutedEventArgs e)
+        {
+            dgLegoElements.ItemsSource = LegoElements;
         }
     }
 }

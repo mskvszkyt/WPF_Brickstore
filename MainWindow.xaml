@@ -14,8 +14,12 @@
 
         <StackPanel x:Name="info" Background="AliceBlue">
             <Button x:Name="btnBetoltes" Content="Fájl betöltése" Click="btnBetoltes_Click"/>
-            <TextBox x:Name="tbSzuro" Margin="20px" TextChanged="tbSzuro_TextChanged"/>
+            <TextBox x:Name="tbSzuro" Margin="20px"/>
             <Label x:Name="lbCount"/>
+            <ComboBox x:Name="cbKategoriaSzuro"/>
+            <ComboBox x:Name="cbSzinSzuro"/>
+            <Button x:Name="btnKeres" Content="Keresés" Click="btnKeres_Click"/>
+            <Button x:Name="btnTorol" Content="Keresés törlése" Click="btnTorol_Click"/>
         </StackPanel>
 
         <DataGrid Grid.Column="1" x:Name="dgLegoElements"></DataGrid>

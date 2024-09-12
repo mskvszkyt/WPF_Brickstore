@@ -10,10 +10,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="4*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <StackPanel x:Name="info" Background="AliceBlue">
-            <Button x:Name="btnBetoltes" Content="Fájl betöltése" Click="btnBetoltes_Click"/>
+            <Button x:Name="btnBetoltes" Content="Mappa kiválasztása" Click="btnBetoltes_Click"/>
             <TextBox x:Name="tbSzuro" Margin="20px"/>
             <Label x:Name="lbCount"/>
             <ComboBox x:Name="cbKategoriaSzuro"/>
@@ -21,6 +22,8 @@
             <Button x:Name="btnKeres" Content="Keresés" Click="btnKeres_Click"/>
             <Button x:Name="btnTorol" Content="Keresés törlése" Click="btnTorol_Click"/>
         </StackPanel>
+        
+        <ListBox x:Name="lbxFileok" Grid.Column="2" SelectionChanged="lbxFileok_SelectionChanged"/>
 
         <DataGrid Grid.Column="1" x:Name="dgLegoElements"></DataGrid>
     </Grid>
